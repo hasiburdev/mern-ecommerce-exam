@@ -1,1 +1,1 @@
-# mern-ecommerce-exam
+# Green Shop
