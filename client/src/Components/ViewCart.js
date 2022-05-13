@@ -1,19 +1,25 @@
 import { Col, Row } from 'antd'
-import React,{useContext} from 'react'
+import React,{useContext,useEffect, useState } from 'react'
 import { Store } from '../Store/Store';
 
 const ViewCart = () => {
 
 const {state ,dispatch} = useContext(Store)
+const [shipping, setShipping] = useState(50)
+const [total, setTotal] = useState('')
 // qunatity incress decress
 const quantity =(item,quantity)=>{
     dispatch({type:"ADD_CART",
               payload: {...item, quantity}
   })
   }
-const applyCupon =()=>{
 
-}
+
+  useEffect(()=>{
+     let cartTotal = state.cartItems? state.cartItems.reduce((ac,cc)=> ac + cc.price*cc.quantity, 0) : 0
+      setTotal(shipping + cartTotal)
+  })
+
 
 
   return (
@@ -82,23 +88,19 @@ const applyCupon =()=>{
                                 <div className="shop-cart-widget">
                                     <form action="#">
                                         <ul>
-                                            <li className="sub-total"><span>Subtotal</span> $ {state.cartItems? state.cartItems.reduce((ac,cc)=> ac + cc.price*cc.quantity, 0) : 0  }.00</li>
+                                            <li className="sub-total"><span>Subtotal</span> ${state.cartItems? state.cartItems.reduce((ac,cc)=> ac + cc.price*cc.quantity, 0) : 0  }.00</li>
                                             <li>
                                                 <span>Shipping</span>
                                                 <div className="shop-check-wrap">
                                                     <div className="custom-control custom-checkbox">
-                                                        <input type="checkbox" className="custom-control-input" id="customCheck1"/>
-                                                        <label className="custom-control-label" for="customCheck1">Free Shipping</label>
-                                                    </div>
-                                                    <div className="custom-control custom-checkbox">
-                                                        <input type="checkbox" className="custom-control-input" id="customCheck2"/>
-                                                        <label className="custom-control-label" for="customCheck2">LOCAL PICKUP: $5.00</label>
+                                                        <label className="custom-control-label" for="customCheck2">LOCAL PICKUP: ${shipping} </label>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li className="cart-total-amount"><span>Total Price</span> <span className="amount">$ 151.00</span></li>
+                                            <li className="cart-total-amount"><span>Total Price : </span> <span className="amount"> ${total}.00
+                                                </span></li>
                                         </ul>
-                                        <a href="checkout.html" className="btn">PROCEED TO CHECKOUT</a>
+                                        <a href="" className="button">PROCEED TO CHECKOUT</a>
                                     </form>
                                 </div>
                             </div>

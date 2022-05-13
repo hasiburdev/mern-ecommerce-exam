@@ -18,8 +18,11 @@ const Mid_Nav = () => {
 
     const handleLogout =()=>{
       localStorage.removeItem("userInfo")
+      localStorage.removeItem("cartItems");
       setUserAccount("Account")
     }
+
+
     const sidecart =()=>{
       if(showCart){
         setShowCart(false)

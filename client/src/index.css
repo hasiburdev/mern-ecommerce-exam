@@ -1,22 +1,30 @@
-body {
-  background: #f3f3f3 !important;
+
+
+
+
+
+body{
+    background: #f3f3f3!important;
+
 }
 
-li {
-  list-style: none;
+li{
+    list-style: none;
 }
-.container {
-  width: 75%;
-  margin: 0 auto;
+.container{
+    width: 75%;
+    margin: 0 auto;
 }
-.hi-container {
-  width: 75%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.hi-container{
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
 }
 
-a {
-  text-decoration: none;
+
+a{
+    text-decoration: none;
 }
