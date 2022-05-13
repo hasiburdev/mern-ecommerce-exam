@@ -1,3 +1,4 @@
+
 import { randomBytes, scryptSync } from "crypto";
 
 const encryptPassowrd = (password, salt) => {

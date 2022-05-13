@@ -1,5 +1,5 @@
 import React,{useContext, useEffect, useState} from 'react'
-import {ShoppingCartOutlined,HeartOutlined,UserOutlined} from '@ant-design/icons';
+import {ShoppingCartOutlined,HeartOutlined,UserOutlined,MinusCircleOutlined,PlusOutlined,MinusOutlined} from '@ant-design/icons';
 import { Badge, Avatar, Input,Dropdown,Menu,PageHeader,Button } from 'antd'
 import logo from '../Assest/img/logo/logo.png'
 import { Store } from '../Store/Store';
@@ -13,7 +13,7 @@ const Mid_Nav = () => {
     const [showCart,setShowCart] = useState(false)
     const onSearch = value => console.log(value);
     const { Search } = Input;
-    const {state,userState} =useContext(Store)
+    const {state,userState,dispatch,userDispatch} =useContext(Store)
     const [userAccount, setUserAccount] = useState("")
 
     const handleLogout =()=>{
@@ -41,6 +41,18 @@ const Mid_Nav = () => {
       setUserAccount("Account")
      }
     },[userState])
+
+
+// qunatity incress decress
+const quantity =(item,quantity)=>{
+  dispatch({type:"ADD_CART",
+            payload: {...item, quantity}
+})
+}
+
+
+console.log(state.cartItems)
+
 
   return (
     <>
@@ -91,18 +103,27 @@ const Mid_Nav = () => {
              <div className={showCart ? "dropwowncart" : "hidedropdown"}>
              <PageHeader className="site-page-header"  title="Shopping Cart" subTitle="Total (5) Items"  extra={[ <Button onClick={cartClose} key="3">Close</Button>]}/>
             
-                <div class="minicart">
-                      <span className='minicart-img'><img /></span>
-                      <span className='minicart-name-price'>
-                          <span className='minicart-name'>Product Name</span>
-                          <span className='minicart-price'>Product Price</span>
-                      </span>
-                      <span className='minicart-action'>delet</span>
-                </div>
+              {state.cartItems.map(product=>(
+                          <div class="minicart">
+                                <span className='minicart-img'><img  src={product.img} /></span>
+                                <span className='minicart-name-price'>
+                                    <span className='minicart-name'>{product.productName}</span>
+                                    <span className='minicart-price'>${product.price}</span>
+                                    <span className='minicart-inc-dec'>
+                                          {product.quantity==0? <button disabled ><MinusOutlined  /></button> :
+                                          <button onClick={()=> quantity(product, product.quantity-1)} ><MinusOutlined  /></button> 
+                                           }
+                                          <span className='inc-amount'>{product.quantity}</span>
+                                          <button onClick={()=> quantity(product, product.quantity+1)}><PlusOutlined/></button>
+                                    </span>
+                                   </span>
+                                <span className='minicart-action' onClick={()=>dispatch({type :"REMOVE_CART", payload: product._id})}><i className="far fa-trash-alt"></i></span>
+                          </div>
+              ))}
             
                 <div className='cartFooter'>
                      <span className='totalcart'>Total : $1205.00</span>
-                     <button className='button'> Continue Order </button>
+                     <Link to='/viewcart'><button className='button' onClick={cartClose}> View Cart </button></Link>
                   </div>
               </div> 
             </div>

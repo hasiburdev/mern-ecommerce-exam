@@ -29,6 +29,18 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  brand: {
+    type: String,
+    default: 0,
+  },
+  cupon: {
+    type: String,
+    default: 0,
+  },
+  discount: {
+    type: Number,
+    default: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

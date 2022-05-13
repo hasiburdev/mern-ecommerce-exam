@@ -7,8 +7,8 @@ import productData from "./data/productData.js";
 import userData from "./data/userData.js";
 
 dotenv.config();
-// const DB_URL = process.env.MONGO_DB_URL;
-const DB_URL = "mongodb://localhost:27017/GreenShop";
+const DB_URL = process.env.MONGO_DB_URL;
+// const DB_URL = "mongodb://localhost:27017/GreenShop";
 
 const seedUsers = async () => {
   await User.deleteMany({});
@@ -26,3 +26,4 @@ mongoose.connect(DB_URL, async () => {
   await seedProducts();
   await seedUsers();
 });
+

@@ -5,10 +5,14 @@ export const getAllProductsFromDB = async () => {
   return products;
 };
 
-export const getProductFromDB = async (slug) => {
-  const product = await Product.findOne({ slug });
+export const getProductFromDB = async (id) => {
+  const product = await Product.findOne({ '_id': id });
   return product;
 };
+
+
+///////////////
+
 
 export const getAllProducts = async (req, res) => {
   const products = await getAllProductsFromDB();
@@ -20,7 +24,7 @@ export const getAllProducts = async (req, res) => {
 };
 
 export const getProduct = async (req, res) => {
-  const product = await getProductFromDB(req.params.slug);
+  const product = await getProductFromDB(req.params.id);
   if (product === null)
     return res.status(404).json({ message: "Product Not Found!" });
   res.status(200).json(product);

@@ -78,21 +78,4 @@ export const data=[
         review:100,
         img:'images/p8.png'
     },
-    {
-        _id:8,
-        productName:"Ready lorem Pice Ipsam",
-        description:"healthy food baby favorite Product",
-        price:200,
-        rating:1.3,
-        review:100,
-        img:'images/p8.png'
-    },    {
-        _id:8,
-        productName:"Ready lorem Pice Ipsam",
-        description:"healthy food baby favorite Product",
-        price:200,
-        rating:1.3,
-        review:100,
-        img:'images/p8.png'
-    },
 ]

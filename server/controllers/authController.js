@@ -3,13 +3,13 @@ import { matchPassword } from "../utils/encrypt.js";
 import { generateToken } from "../utils/token.js";
 
 export const signUpController = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
   const userFromDB = await getUser(email);
 
   if (userFromDB !== null)
     return res.status(409).json({ message: "User already registered!" });
 
-  await createUser(email, password);
+  await createUser(email, password, name);
   res.status(201).json({ message: "User Created Succesfully!" });
 };
 export const loginController = async (req, res) => {
@@ -25,5 +25,6 @@ export const loginController = async (req, res) => {
   res.status(200).json({
     email,
     token: generateToken({ email, id: userFromDB._id }),
+    name: userFromDB.name
   });
 };

@@ -47,9 +47,7 @@ const Special = ({products}) => {
                     </Col>
                     <Col span={19}>
                          <Row gutter={[18, 18]}>
-                         
                             <ProductCard products={data} />
-
                          </Row>
                     </Col>
                   </Row>

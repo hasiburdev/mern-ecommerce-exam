@@ -1,18 +1,18 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "db:up": "docker-compose up",
-    "dev": "nodemon server.js",
+    "dev": "node server.js",
     "seed": "node seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
@@ -22,5 +22,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
-  }
+  },
+  "main": "server.js",
+  "description": ""
 }

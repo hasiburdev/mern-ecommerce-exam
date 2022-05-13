@@ -50,6 +50,7 @@ color: #272727;
     align-items: center;
     border-radius: 5px;
     background: white;
+    border-bottom: 1px solid rgb(240, 240, 240);
 }
 .bottom-nav .menu{
     width: 60%!important;
@@ -260,16 +261,64 @@ border: none!important;
     padding: 15px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+   border-bottom: 1px solid rgb(234, 234, 234);
 }
 
 .minicart-name-price{
     display: flex;
     flex-direction: column;
+    width: 55%;
 }
 
+.minicart-img{
+    width: 100px;
+    height: 90px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.minicart-img img{
+    width: 100%;
+    height: 100%;
+}
 
+.minicart-name{
+    font-size: 18px;
+    color: #4ab02a;
+    font-weight: 600;
+}
+.minicart-price{
+    color: #878787;
+    font-size: 14px;
+    font-weight: 600;
+}
+.anticon-minus-circle svg{
+    color:red;
+    font-weight: 600;
+    cursor: pointer;
+}
 
-.ant-badge-count{
-background: #4ab02a!important;
+.minicart-inc-dec button{
+    background: #4ab02a;;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    width: 30px;
+    color: #ffff;
+    cursor: pointer;
+}
+.minicart-inc-dec .anticon-plus svg,
+.minicart-inc-dec .anticon-minus svg{
+    width: 15px!important;
+    height: 15px!important;
+}
+.minicart-inc-dec .inc-amount {
+  margin: 0 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: green;
 
+}
+.ant-badge-count {
+    background: coral;
 }
