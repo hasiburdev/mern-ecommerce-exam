@@ -9,9 +9,6 @@ import All_Products from './Pages/Product_Page'
 import  Admin  from './Dashboard/Admin';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import { Store } from './Store/Store';
-import ProductDetails from './Components/ProductDetails';
-// import { data } from './Components/demoData'
 import axios from 'axios';
 import ViewCart from './Components/ViewCart';
 
@@ -28,7 +25,7 @@ const [data, setdata] = useState([])
 
 
 
-    const {userState:{userInfo}} =useContext(Store)
+
     
 
     return (
@@ -36,15 +33,13 @@ const [data, setdata] = useState([])
                 <BrowserRouter>
                     <Navbar />
                         <Routes>
-                                <Route path="/" element={<Home products={data}/>} />
+                                <Route path="/" element={<Home products={data} />} />
                                 <Route path="/All_Products" element={<All_Products products={data}/>} />
                                 <Route path="/ViewCart" element={<ViewCart />} />
                                 {/* <Route path="/All_Products/:slug" element={<ProductDetails/>} /> */}
                                 <Route path='/Login' element={<Login/>} />
                                 <Route path='/Signup' element={<Signup/>} />
                                 <Route path="/Admin" element={<Admin />} />
-    
-
                         </Routes>
                     <Footer />
                 </BrowserRouter>

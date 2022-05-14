@@ -1,6 +1,6 @@
 
-import { useNavigate, useParams } from 'react-router-dom'
-import React,{useContext, useEffect, useState} from 'react'
+import { useNavigate} from 'react-router-dom'
+import React,{useContext, useState} from 'react'
 import {PlusOutlined,MinusOutlined} from '@ant-design/icons';
 import { Store } from '../Store/Store';
 import axios from 'axios';
@@ -15,20 +15,12 @@ const ProductDetails = ({singleProduct,setIsModalVisible}) => {
 
 const navigate = useNavigate()
 const {state:cstate, dispatch:cdispatch,userDispatch,userState} = useContext(Store)
-const {state,dispatch,} =useContext(Store)
+const {dispatch,} =useContext(Store)
 const [cuporError,setCuponError] = useState('')
 const [cuponCode, setCuponCode] = useState('')
 const [discount, seDiscount] = useState('')
 
-// const [singleProduct, setSingleProduct] = useState([])
-//     useEffect(async()=>{
-//         await axios.get(`http://localhost:8000/products/${params.slug}`).then((products)=>{
-//           setSingleProduct(products.data)
-//         })
 
-//     },[])
-
-// qunatity incress decress
 
 const addCart =async(id)=>{
 

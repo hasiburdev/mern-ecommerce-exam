@@ -45,9 +45,7 @@ const Signup = () => {
               .catch(function (error) {
                 console.log(error);
               });
-        
-    
-    }
+         }
 
 
 
@@ -68,9 +66,6 @@ const Signup = () => {
             <RiAccountPinCircleFill/>
            <h1>Signup</h1>
         </div>
-
-
-
          <Form  name="basic" labelCol={{}} wrapperCol={{ span: 24,}}initialValues={{remember: true,}}
 
             style={{width:"100%"}}
@@ -93,13 +88,6 @@ const Signup = () => {
             <Form.Item style={{marginBottom:"10px"}} name="password" rules={[ { required: true, message: 'Please input your Confirm password!',},]}>
                 <Input placeholder='Confirm Password' name='conpassword' onChange={(e)=>setConPassword(e.target.value)}/>
             </Form.Item>
-
-
-
-
-
-
-
             <Select className='role-select' defaultValue="Customer" style={{ width: "100px",textAlign:"left" }}>
                 <Option value="Suppier">Suppier</Option>
                 <Option value="Customer">Customer</Option>
@@ -111,14 +99,10 @@ const Signup = () => {
                 valuePropName="checked"
             >
            <p className='form-para-signup'> <span>Have an account ? <Link to="/login"> Login </Link></span></p>
-
             </Form.Item>
-
             <Form.Item >
                 <Button onClick={handleSignup} style={{background:"#434E6E",padding:"0px 25px",color:"white"}}>Sign up</Button>
             </Form.Item>
-
-
             {suc ? <Alert message={suc} type="error" /> :"" }
             </Form>
 

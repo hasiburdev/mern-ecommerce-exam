@@ -6,7 +6,6 @@ const Store = createContext()
 // cart reducer start
  const initvalue ={
      cartItems: [],
-    //  JSON.parse(localStorage.getItem('cartItems')) ? JSON.parse(localStorage.getItem('cartItems')) : {},
  }
 const reducer =(state,action)=>{
     switch (action.type){
@@ -42,6 +41,10 @@ const userReducer =(state,action)=>{
        case 'ADD_USER':
        return {...state,userInfo:action.payload} 
 
+       case 'REMOVE_USER':
+        return {...state,userInfo:''} 
+
+
        default :
           return state
    }
@@ -49,16 +52,10 @@ const userReducer =(state,action)=>{
 // user reducer end
 
 
-
-
-
-
 const StoreProvide = (props)=>{
 const [ state, dispatch] = useReducer(reducer, initvalue)
 const [ userState, userDispatch] = useReducer(userReducer, userInitvalue)
-
 const value = { state, dispatch, userState, userDispatch }
-
 return  <Store.Provider value={value}> {props.children} </Store.Provider>
 
 }

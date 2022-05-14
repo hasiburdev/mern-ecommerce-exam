@@ -3,7 +3,7 @@ import {ShoppingCartOutlined,HeartOutlined,UserOutlined,MinusCircleOutlined,Plus
 import { Badge, Avatar, Input,Dropdown,Menu,PageHeader,Button } from 'antd'
 import logo from '../Assest/img/logo/logo.png'
 import { Store } from '../Store/Store';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -15,14 +15,19 @@ const Mid_Nav = () => {
     const { Search } = Input;
     const {state,userState,dispatch,userDispatch} =useContext(Store)
     const [userAccount, setUserAccount] = useState("")
+    const navigate = useNavigate()
 
     const handleLogout =()=>{
       localStorage.removeItem("userInfo")
-      localStorage.removeItem("cartItems");
+      userDispatch({type:"REMOVE_USER"})
+      dispatch({type:"CLEAR_CART"})
       setUserAccount("Account")
+      navigate('/login')
     }
 
+    
 
+    //show side cart
     const sidecart =()=>{
       if(showCart){
         setShowCart(false)
@@ -31,30 +36,26 @@ const Mid_Nav = () => {
         setShowCart(true)
       }
     }
+    //side cart close
     const cartClose =()=>{
       setShowCart(false)
     }
-
-
     useEffect(()=>{
       if(userState.userInfo){
         setUserAccount(userState.userInfo.name)
       }
      else{
-      setUserAccount("Account")
+      setUserAccount("Login/SignUp")
      }
     },[userState])
 
+    // qunatity incress decress
+   const quantity =(item,quantity)=>{
+      dispatch({type:"ADD_CART",
+      payload: {...item, quantity}
+     })
+     }
 
-// qunatity incress decress
-const quantity =(item,quantity)=>{
-  dispatch({type:"ADD_CART",
-            payload: {...item, quantity}
-})
-}
-
-
-console.log(state.cartItems)
 
 
   return (
@@ -78,7 +79,6 @@ console.log(state.cartItems)
                            <Link to=''><Avatar icon={ <ShoppingCartOutlined  />}/></Link>
                       </Badge> 
                     </div>
-
                     <div className='account'>
                       <UserOutlined style={{marginRight:"10px"}} /> 
                           <Dropdown overlay={
@@ -90,7 +90,7 @@ console.log(state.cartItems)
                                    <Link to="/Signup">Sign up</Link>
                                 </Menu.Item>
                                 <Menu.Item key="2">
-                                   <Link to="/Signup" onClick={handleLogout}>Logout</Link>
+                                   {userState.userInfo && <span onClick={handleLogout}>Logout</span> }
                                 </Menu.Item>
                             </Menu>
                           }>
@@ -101,10 +101,8 @@ console.log(state.cartItems)
                     </div>
                </div>
                {/* side cart */}
-
-
              <div className={showCart ? "dropwowncart" : "hidedropdown"}>
-             <PageHeader className="site-page-header"  title="Shopping Cart" subTitle="Total (5) Items"  extra={[ <Button onClick={cartClose} key="3">Close</Button>]}/>
+             <PageHeader className="site-page-header"  title="Shopping Cart" subTitle={`Total ${state.cartItems.length} Items`}  extra={[ <Button onClick={cartClose} key="3">Close</Button>]}/>
             
               {state.cartItems.map(product=>(
                           <div class="minicart">
@@ -125,13 +123,11 @@ console.log(state.cartItems)
               ))}
             
                 <div className='cartFooter'>
-                     <span className='totalcart'>Total : $1205.00</span>
+                     <span className='totalcart'>Total : ${state.cartItems? state.cartItems.reduce((ac,cc)=> ac + cc.price*cc.quantity, 0) : 0} </span>
                      <Link to='/viewcart'><button className='button' onClick={cartClose}> View Cart </button></Link>
                   </div>
               </div> 
             </div>
-
-
     </>
   )
 }
